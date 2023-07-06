@@ -10,7 +10,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class TelegramBot extends TelegramLongPollingBot {
 
-    final BotConfig botConfig;
+    private final BotConfig botConfig;
 
     public TelegramBot(BotConfig botConfig) {
         this.botConfig = botConfig;
@@ -22,14 +22,12 @@ public class TelegramBot extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
-
             switch (messageText) {
                 case "/start":
                     startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
                     break;
-                case "/weather":
 
-                default: sendMessage(chatId, "Sorry command was not recognized.");
+                default: sendMessage(chatId, "Sorry, command was not recognized.");
             }
         }
 
